@@ -1,54 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
   loadLinks();
-  handleCookies();
+  handleCookieConsent();
 });
 
-/* Load links from JSON */
-function loadLinks() {
-  fetch("links.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("link-container");
+function handleCookieConsent() {
+  const overlay = document.getElementById("cookie-overlay");
+  const acceptBtn = document.getElementById("accept-cookies");
+  const manageBtn = document.getElementById("manage-cookies");
+  const saveBtn = document.getElementById("save-settings");
+  const settingsPanel = document.getElementById("cookie-settings");
+  const analyticsCheckbox = document.getElementById("analytics-checkbox");
 
-      data.forEach(link => {
-        const card = document.createElement("div");
-        card.className = "link-card";
+  const consent = JSON.parse(localStorage.getItem("cookieConsent"));
 
-        card.innerHTML = `
-          <a href="${link.url}" target="_blank" rel="noopener noreferrer">
-            ${link.title}
-          </a>
-          <p>${link.description}</p>
-        `;
-
-        container.appendChild(card);
-      });
-    })
-    .catch(error => {
-      console.error("Error loading links:", error);
-    });
-}
-
-/* Cookie handling */
-function handleCookies() {
-  const banner = document.getElementById("cookie-banner");
-  const button = document.getElementById("accept-cookies");
-
-  if (!localStorage.getItem("cookiesAccepted")) {
-    banner.classList.remove("hidden");
-  } else {
+  if (!consent) {
+    overlay.classList.remove("hidden");
+  } else if (consent.analytics) {
     loadGoogleAnalytics();
   }
 
-  button.addEventListener("click", () => {
-    localStorage.setItem("cookiesAccepted", "true");
-    banner.classList.add("hidden");
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem(
+      "cookieConsent",
+      JSON.stringify({ analytics: true })
+    );
+    overlay.classList.add("hidden");
     loadGoogleAnalytics();
+  });
+
+  manageBtn.addEventListener("click", () => {
+    settingsPanel.classList.remove("hidden");
+  });
+
+  saveBtn.addEventListener("click", () => {
+    const consentData = {
+      analytics: analyticsCheckbox.checked
+    };
+
+    localStorage.setItem(
+      "cookieConsent",
+      JSON.stringify(consentData)
+    );
+
+    overlay.classList.add("hidden");
+
+    if (consentData.analytics) {
+      loadGoogleAnalytics();
+    }
   });
 }
 
 /* Google Analytics (GA4) */
 function loadGoogleAnalytics() {
+  if (window.gaLoaded) return;
+  window.gaLoaded = true;
+
   const script1 = document.createElement("script");
   script1.async = true;
   script1.src = "https://www.googletagmanager.com/gtag/js?id=G-5H07SV662K";
