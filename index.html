@@ -17,13 +17,41 @@
   <!-- Links will be inserted here -->
 </main>
 
-<!-- Cookie Banner -->
-<div id="cookie-banner" class="hidden">
-  <p>
-    This website uses cookies for analytics purposes.
-    <a href="#" target="_blank">Learn more</a>
-  </p>
-  <button id="accept-cookies">Accept</button>
+<!-- Cookie Consent Modal -->
+<div id="cookie-overlay" class="overlay hidden">
+  <div class="cookie-modal">
+    <h2>Cookie Preferences</h2>
+    <p>
+      We use cookies to analyze traffic and improve this website.
+      You can accept analytics cookies or manage your preferences.
+    </p>
+
+    <div id="cookie-buttons">
+      <button id="accept-cookies" class="primary">
+        Accept analytics
+      </button>
+      <button id="manage-cookies" class="secondary">
+        Manage settings
+      </button>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="cookie-settings" class="hidden">
+      <label>
+        <input type="checkbox" checked disabled>
+        Necessary cookies (required)
+      </label>
+
+      <label>
+        <input type="checkbox" id="analytics-checkbox">
+        Analytics cookies (Google Analytics)
+      </label>
+
+      <button id="save-settings" class="primary">
+        Save settings
+      </button>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
