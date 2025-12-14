@@ -12,36 +12,32 @@
   <h1>My GitHub Pages</h1>
   <p>This is a lot of stuff.</p>
 </header>
-
+  
 <main id="link-container">
-  <!-- Links will be inserted here -->
+  <!-- Links will be inserted here dynamically -->
 </main>
 
 <!-- Cookie Consent Modal -->
 <div id="cookie-overlay" class="overlay hidden">
   <div class="cookie-modal">
     <h2>Cookie Preferences</h2>
-    <p>
-      We use cookies to analyze traffic and improve this website.
-    </p>
+    <p>We use cookies to analyze traffic and improve this website. Please accept or manage your preferences.</p>
 
     <div id="cookie-buttons">
-      <button id="accept-cookies">Accept analytics</button>
-      <button id="manage-cookies">Manage settings</button>
+      <button id="accept-cookies" class="primary">Accept analytics</button>
+      <button id="manage-cookies" class="secondary">Manage settings</button>
     </div>
 
     <div id="cookie-settings" class="hidden">
       <label>
         <input type="checkbox" checked disabled>
-        Necessary cookies
+        Necessary cookies (required)
       </label>
-
       <label>
         <input type="checkbox" id="analytics-checkbox">
-        Analytics cookies
+        Analytics cookies (Google Analytics)
       </label>
-
-      <button id="save-settings">Save settings</button>
+      <button id="save-settings" class="primary">Save settings</button>
     </div>
   </div>
 </div>
