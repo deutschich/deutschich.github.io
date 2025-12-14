@@ -1,4 +1,3 @@
-// script.js - replace your existing file with this exact content
 document.addEventListener("DOMContentLoaded", function () {
   loadLinks();
   handleCookieConsent();
