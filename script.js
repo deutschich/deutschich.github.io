@@ -55,14 +55,12 @@ function handleCookieConsent() {
   try {
     consent = raw ? JSON.parse(raw) : null;
   } catch (e) {
-    console.warn("cookieConsent exists but could not be parsed, clearing it.");
     localStorage.removeItem("cookieConsent");
     consent = null;
   }
 
   if (!consent) {
     overlay.classList.remove("hidden");
-    // trap focus to overlay could be added here for a11y
   } else if (consent.analytics) {
     loadGoogleAnalytics();
   }
@@ -98,21 +96,23 @@ function handleCookieConsent() {
 
 /* ---------- Load Google Analytics only after consent ---------- */
 function loadGoogleAnalytics() {
-  if (window.gaLoaded) {
-    return;
-  }
+  if (window.gaLoaded) return;
   window.gaLoaded = true;
 
-  var script1 = document.createElement("script");
+  var measurementId = 'G-5H07SV662K'; // Replace with your GA4 ID
+
+  var script1 = document.createElement('script');
   script1.async = true;
-  script1.src = "https://www.googletagmanager.com/gtag/js?id=G-5H07SV662K";
+  script1.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=' + measurementId);
   document.head.appendChild(script1);
 
-  var script2 = document.createElement("script");
-  var code = "window.dataLayer = window.dataLayer || [];\n" +
-             "function gtag(){dataLayer.push(arguments);} \n" +
-             "gtag('js', new Date()); \n" +
-             "gtag('config', 'G-5H07SV662K');";
+  var script2 = document.createElement('script');
+  var code = [
+    "window.dataLayer = window.dataLayer || [];",
+    "function gtag(){dataLayer.push(arguments);}",
+    "gtag('js', new Date());",
+    "gtag('config', '" + measurementId + "');"
+  ].join("\n");
   script2.textContent = code;
   document.head.appendChild(script2);
 }
