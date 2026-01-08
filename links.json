@@ -8,5 +8,10 @@
     "title": "BalSync",
     "url": "BalSync",
     "description": "Minecraft Plugin BalSync for Balance Synchronisation"
+  },
+    {
+    "title": "BadPCMC",
+    "url": "BadPCMC",
+    "description": "Minecraft Modpack for Bad PCs"
   }
 ]
