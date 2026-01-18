@@ -1,17 +1,7 @@
 [
   {
-    "title": "Infinitehomes",
-    "url": "InfiniteHomes",
-    "description": "Minecraft Plugin InfiniteHomes"
-  },
-  {
-    "title": "BalSync",
-    "url": "BalSync",
-    "description": "Minecraft Plugin BalSync for Balance Synchronisation"
-  },
-    {
-    "title": "BadPCMC",
-    "url": "BadPCMC",
-    "description": "Minecraft Modpack for Bad PCs"
+    "title": "CheapMC/CheapDesign",
+    "url": "CheapMC",
+    "description": "Cheap-Looking Minecraft Texture Pack"
   }
 ]
